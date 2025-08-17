@@ -1,0 +1,53 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-upload-pv
+spec:
+  storageClassName: immich-upload-storage
+  capacity:
+    storage: 300Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - guest
+  csi:
+    # must be installed on cluster: https://github.com/kubernetes-csi/csi-driver-smb/blob/master/docs/install-csi-driver-v1.18.0.md
+    driver: smb.csi.k8s.io  
+    volumeHandle: immich-data-vol
+    volumeAttributes:
+      source: "\\\\xx.xx.xx.xx\\folder"
+
+  # kept this here as an example of how to use credentials
+  # nodeStageSecretRef:
+        #name: smb-credentials
+        #namespace: default
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-db-pv
+spec:
+  storageClassName: immich-db-storage
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/immich/db" # local disk
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-ml-cache-pv
+spec:
+  storageClassName: immich-ml-cache-storage
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/immich/ml-cache" # local disk
