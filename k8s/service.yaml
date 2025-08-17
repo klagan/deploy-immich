@@ -12,12 +12,12 @@ spec:
       port: 84
       targetPort: 2283
 ---
-apiVersion: v1 # should prolly be headless
+apiVersion: v1
 kind: Service
 metadata:
   name: immich-db-service
 spec:
-  type: ClusterIP
+  clusterIP: None
   selector:
     app: immich-db
   ports:
@@ -25,12 +25,12 @@ spec:
       port: 5432
       targetPort: 5432
 ---
-apiVersion: v1 # should prolly be headless
+apiVersion: v1
 kind: Service
 metadata:
   name: immich-redis-service
 spec:
-  type: ClusterIP
+  clusterIP: None 
   selector:
     app: immich-redis
   ports:
