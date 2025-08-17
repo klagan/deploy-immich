@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: immich-appdata-pv
 spec:
-  storageClassName: immich-appdata-storage
+  storageClassName: immich-data-storage
   capacity:
     storage: 300Gi
   accessModes:
