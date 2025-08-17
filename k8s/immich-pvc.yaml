@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: immich-appdata-pvc
+  name: immich-upload-pvc
 spec:
-  storageClassName: immich-appdata-storage
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 200Gi
+      storage: 100Gi # Placeholder: Adjust to your needs
+  storageClassName: immich-data-storage
