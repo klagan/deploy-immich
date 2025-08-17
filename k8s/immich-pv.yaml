@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: immich-appdata-pv
+  name: immich-data-pv
 spec:
   storageClassName: immich-data-storage
   capacity:
