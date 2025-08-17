@@ -7,5 +7,30 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 100Gi # Placeholder: Adjust to your needs
+      storage: 200Gi 
   storageClassName: immich-data-storage
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-db-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi 
+  storageClassName: immich-data-storage
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-ml-cache-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi 
+  storageClassName: immich-data-storage
+
